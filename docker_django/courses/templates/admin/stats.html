@@ -1,0 +1,48 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+ <h1>Thống kê doanh thu</h1>
+
+  <!-- Form lọc dữ liệu -->
+  <form method="get" action="{% url 'admin:course-stats' %}">
+      {{ form.as_p }}
+      <button type="submit" class="button">Lọc dữ liệu</button>
+  </form>
+
+  <!-- Biểu đồ doanh thu -->
+  <canvas id="revenueChart" width="800" height="400"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    var ctx = document.getElementById('revenueChart').getContext('2d');
+    var revenueChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ periods|safe }},
+            datasets: [{
+                label: 'Doanh thu',
+                data: {{ revenues|safe }},
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Doanh thu theo thời gian'
+                }
+            }
+        }
+    });
+  </script>
+{% endblock %}

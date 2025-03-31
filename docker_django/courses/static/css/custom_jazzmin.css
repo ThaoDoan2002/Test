@@ -1,0 +1,19 @@
+.login-logo img {
+    width: 200px;  /* Chỉnh chiều rộng logo */
+    height: auto;  /* Tự động điều chỉnh chiều cao dựa trên tỷ lệ */
+}
+
+.jazzmin-login-page {
+    background-color: #FFF0F5;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #d497ab;
+    border-color: #d497ab;
+    box-shadow: none;
+}
+
+
+
